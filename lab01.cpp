@@ -5,7 +5,7 @@
 using namespace std;
 using namespace cv;
 int main(){
-  string item02 = "2.  Convert a color image into a grayscale image.  The command line is";
+  string item02 = "2.  Convert a color image into a grayscale image";
   cout << item02 << endl;
   string imagePath;
   cout << "Enter the image path: ";
