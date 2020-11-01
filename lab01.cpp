@@ -8,14 +8,13 @@
 using namespace std;
 using namespace cv;
 void onTrackbar(int pos, void *dat){
-  if (pos != 0) {
   void **data = static_cast<void**>(dat);
-    const Mat image = *(static_cast<Mat*>(data[0]));
-    Mat& changingImage = *(static_cast<Mat*>(data[1]));
-    string& windowName = *(static_cast<string*>(data[2]));
-    blur(image, changingImage, Size(pos, pos));
-    imshow(windowName, changingImage);
-  }
+  const Mat image = *(static_cast<Mat*>(data[0]));
+  Mat& changingImage = *(static_cast<Mat*>(data[1]));
+  string& windowName = *(static_cast<string*>(data[2]));
+  if (pos == 0) blur(image, changingImage, Size(1, 1));
+  else blur(image, changingImage, Size(pos, pos));
+  imshow(windowName, changingImage);
 }
 int main(){
   string item05 = "Filter a color image/ a grayscale image usingaverage filter operator. Add a trackbarin the output window to modify the kernel size parameter";
@@ -24,7 +23,7 @@ int main(){
   cout << "Enter the image path: ";
   cin >> imagePath;
   Mat image = imread(imagePath, IMREAD_UNCHANGED);
-  Mat changingImage(image);
+  Mat changingImage;
   void *data[3];
   data[0] = &image;
   data[1] = &changingImage;
