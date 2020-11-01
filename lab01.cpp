@@ -10,7 +10,7 @@ using namespace cv;
 void onTrackbar(int pos, void *dat){
   if (pos != 0) {
   void **data = static_cast<void**>(dat);
-    Mat& image = *(static_cast<Mat*>(data[0]));
+    const Mat image = *(static_cast<Mat*>(data[0]));
     Mat& changingImage = *(static_cast<Mat*>(data[1]));
     string& windowName = *(static_cast<string*>(data[2]));
     blur(image, changingImage, Size(pos, pos));
